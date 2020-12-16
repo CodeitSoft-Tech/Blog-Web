@@ -14,6 +14,7 @@ foreach ($result as $row)
     $newsletter_on_off = $row['newsletter_on_off'];
     $before_body = $row['before_body'];
 }
+
 ?>
 
 
@@ -30,14 +31,14 @@ foreach ($result as $row)
 				if(empty($_POST['email_subscribe'])) 
 			    {
 			        $valid = 0;
-			        $error_message1 .= LANG_VALUE_131;
+			        $error_message1 .= LANG_VALUE_28;
 			    }
 			    else
 			    {
 			    	if (filter_var($_POST['email_subscribe'], FILTER_VALIDATE_EMAIL) === false)
 				    {
 				        $valid = 0;
-				        $error_message1 .= LANG_VALUE_134;
+				        $error_message1 .= LANG_VALUE_24;
 				    }
 				    else
 				    {
@@ -47,7 +48,7 @@ foreach ($result as $row)
 				    	if($total)
 				    	{
 				    		$valid = 0;
-				        	$error_message1 .= LANG_VALUE_147;
+				        	$error_message1 .= LANG_VALUE_16;
 				    	}
 				    	else
 				    	{
@@ -72,12 +73,10 @@ foreach ($result as $row)
 							// Getting the url of the verification link
 							$verification_url = BASE_URL.'verify-subscriber.php?email='.$to.'&key='.$key;
 
-							$message = '
-Thanks for your interest to subscribe our newsletter!<br><br>
-Please click this link to confirm your subscription:
-					'.$verification_url.'<br><br>
-This link will be active only for 24 hours.
-					';
+							$message = 'Thanks for your interest to subscribe our newsletter!<br><br>
+							            Please click this link to confirm your subscription:
+									'.$verification_url.'<br><br>
+								 This link will be active only for 24 hours.';
 
 							
 							
@@ -93,7 +92,7 @@ This link will be active only for 24 hours.
 							    $mail->Body = $message;
 							    $mail->send();
 						
-							    $success_message1 = LANG_VALUE_136;   
+							    $success_message1 = LANG_VALUE_10;   
 							} catch (Exception $e) {
 							    echo 'Message could not be sent.';
 							    echo 'Mailer Error: ' . $mail->ErrorInfo;
@@ -115,11 +114,11 @@ This link will be active only for 24 hours.
 			?>
 				<form action="" method="post">
 					<?php $csrf->echoInputField(); ?>
-					<h2><?php echo LANG_VALUE_93; ?></h2>
+					<h2><?php echo LANG_VALUE_15; ?></h2>
 					<div class="input-group">
-			        	<input type="email" class="form-control" placeholder="<?php echo LANG_VALUE_95; ?>" name="email_subscribe">
+			        	<input type="email" class="form-control" placeholder="<?php echo LANG_VALUE_8; ?>" name="email_subscribe">
 			         	<span class="input-group-btn">
-			         	<button class="btn btn-theme" type="submit" name="form_subscribe"><?php echo LANG_VALUE_92; ?></button>
+			         	<button class="btn btn-theme" type="submit" name="form_subscribe"><?php echo LANG_VALUE_14; ?></button>
 			         	</span>
 			        </div>
 				</div>
@@ -134,7 +133,7 @@ This link will be active only for 24 hours.
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3 col-sm-6 footer-col">
-				<h3><?php echo LANG_VALUE_110; ?></h3>
+				<h3><?php echo LANG_VALUE_17; ?></h3>
 				<div class="row">
 					<div class="col-md-12">
 						<p>
@@ -144,7 +143,7 @@ This link will be active only for 24 hours.
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6 footer-col">
-				<h3><?php echo LANG_VALUE_113; ?></h3>
+				<h3><?php echo LANG_VALUE_18; ?></h3>
 				<div class="row">
 					<div class="col-md-12">
 						<ul>
@@ -168,7 +167,7 @@ This link will be active only for 24 hours.
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6 footer-col">
-				<h3><?php echo LANG_VALUE_112; ?></h3>
+				<h3><?php echo LANG_VALUE_19; ?></h3>
 				<div class="row">
 					<div class="col-md-12">
 						<ul>
@@ -192,7 +191,7 @@ This link will be active only for 24 hours.
 				</div>
 			</div>
 			<div class="col-md-3 col-sm-6 footer-col">
-				<h3><?php echo LANG_VALUE_114; ?></h3>
+				<h3><?php echo LANG_VALUE_23; ?></h3>
 				<div class="contact-item">
 					<div class="text"><?php echo nl2br($contact_address); ?></div>
 				</div>
@@ -224,15 +223,6 @@ This link will be active only for 24 hours.
 	<i class="fa fa-angle-up"></i>
 </a>
 
-<?php
-$statement = $pdo->prepare("SELECT * FROM tbl_settings WHERE id=1");
-$statement->execute();
-$result = $statement->fetchAll(PDO::FETCH_ASSOC);                            
-foreach ($result as $row) {
-    $stripe_public_key = $row['stripe_public_key'];
-    $stripe_secret_key = $row['stripe_secret_key'];
-}
-?>
 
 <script src="assets/js/jquery-2.2.4.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -247,68 +237,9 @@ foreach ($result as $row) {
 <script src="assets/js/bootstrap-touch-slider.js"></script>
 <script src="assets/js/select2.full.min.js"></script>
 <script src="assets/js/custom.js"></script>
-<script>
-	function confirmDelete()
-	{
-	    return confirm("Do you sure want to delete this data?");
-	}
-	$(document).ready(function () {
-		advFieldsStatus = $('#advFieldsStatus').val();
+<script id="dsq-count-scr" src="//blogwebsite-2.disqus.com/count.js" async></script>
 
-		$('#paypal_form').hide();
-		$('#stripe_form').hide();
-		$('#bank_form').hide();
-
-        $('#advFieldsStatus').on('change',function() {
-            advFieldsStatus = $('#advFieldsStatus').val();
-            if ( advFieldsStatus == '' ) {
-            	$('#paypal_form').hide();
-				$('#stripe_form').hide();
-				$('#bank_form').hide();
-            } else if ( advFieldsStatus == 'PayPal' ) {
-               	$('#paypal_form').show();
-				$('#stripe_form').hide();
-				$('#bank_form').hide();
-            } else if ( advFieldsStatus == 'Stripe' ) {
-               	$('#paypal_form').hide();
-				$('#stripe_form').show();
-				$('#bank_form').hide();
-            } else if ( advFieldsStatus == 'Bank Deposit' ) {
-            	$('#paypal_form').hide();
-				$('#stripe_form').hide();
-				$('#bank_form').show();
-            }
-        });
-	});
-
-
-	$(document).on('submit', '#stripe_form', function () {
-        // createToken returns immediately - the supplied callback submits the form if there are no errors
-        $('#submit-button').prop("disabled", true);
-        $("#msg-container").hide();
-        Stripe.card.createToken({
-            number: $('.card-number').val(),
-            cvc: $('.card-cvc').val(),
-            exp_month: $('.card-expiry-month').val(),
-            exp_year: $('.card-expiry-year').val()
-            // name: $('.card-holder-name').val()
-        }, stripeResponseHandler);
-        return false;
-    });
-    Stripe.setPublishableKey('<?php echo $stripe_public_key; ?>');
-    function stripeResponseHandler(status, response) {
-        if (response.error) {
-            $('#submit-button').prop("disabled", false);
-            $("#msg-container").html('<div style="color: red;border: 1px solid;margin: 10px 0px;padding: 5px;"><strong>Error:</strong> ' + response.error.message + '</div>');
-            $("#msg-container").show();
-        } else {
-            var form$ = $("#stripe_form");
-            var token = response['id'];
-            form$.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
-            form$.get(0).submit();
-        }
-    }
-</script>
 <?php echo $before_body; ?>
+
 </body>
 </html>

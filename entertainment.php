@@ -5,11 +5,11 @@ $statement = $pdo->prepare("SELECT * FROM tbl_page WHERE id=1");
 $statement->execute();
 $result = $statement->fetchAll(PDO::FETCH_ASSOC);                            
 foreach ($result as $row) {
-    $blog_banner = $row['blog_banner'];
+    $enter_page_banner = $row['enter_page_banner']; 
 }
 ?>
 
-<div class="page-banner" style="background-image: url(assets/uploads/<?php echo $blog_banner; ?>);">
+<div class="page-banner" style="background-image: url(assets/uploads/<?php echo $enter_page_banner; ?>);">
     <div class="inner">
         <h1>Entertainment</h1>
     </div>
@@ -55,8 +55,7 @@ foreach ($result as $row) {
                                         LIMIT $start, $limit"); 
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            
-            
+                        
             if ($page == 0) $page = 1;                  //if no page var is given, default to 1.
             $prev = $page - 1;                          //previous page is page - 1
             $next = $page + 1;                          //next page is page + 1

@@ -1,29 +1,3 @@
-<?php require_once('header.php'); ?>
-
-<?php
-$statement = $pdo->prepare("SELECT * FROM tbl_page WHERE id=1");
-$statement->execute();
-$result = $statement->fetchAll(PDO::FETCH_ASSOC);                            
-foreach ($result as $row) {
-    $politics_page_blog_banner = $row['politics_page_banner'];
-}
-?>
-
-<div class="page-banner" style="background-image: url(assets/uploads/<?php echo $politics_page_banner; ?>);">
-    <div class="inner">
-        <h1>Politics</h1>
-    </div>
-</div>
-
-<div class="page">
-    <div class="container">
-        <div class="row">            
-            <div class="col-md-9">
-                <div class="blog">
-                     <h3>Latest Post</h3>
-                     <hr>
-                    <div class="row">
-                        <div class="col-md-12">
 
 
             <?php
@@ -31,10 +5,10 @@ foreach ($result as $row) {
             $adjacents = 5;
             
             $statement = $pdo->prepare("SELECT * 
-                                        FROM tbl_post 
-                                        JOIN tbl_category USING(category_id)  
-                                        WHERE category_id = '1'
-                                        ORDER BY post_id DESC");                
+                                        FROM tbl_post t1
+                                        JOIN tbl_category t2 
+                                        ON t1.category_id = t2.category_id 
+                                        ORDER BY t1.post_id DESC");                
             $statement->execute();
             $total_pages = $statement->rowCount();
 
@@ -48,10 +22,10 @@ foreach ($result as $row) {
                 $start = 0;
             
             $statement = $pdo->prepare("SELECT * 
-                                        FROM tbl_post 
-                                        JOIN tbl_category USING(category_id) 
-                                        WHERE category_id = '1'
-                                        ORDER BY post_id DESC
+                                        FROM tbl_post t1
+                                        JOIN tbl_category t2 
+                                        ON t1.category_id = t2.category_id 
+                                        ORDER BY t1.post_id DESC
                                         LIMIT $start, $limit"); 
             $statement->execute();
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -133,53 +107,3 @@ foreach ($result as $row) {
             }
             /* ===================== Pagination Code Ends ================== */
             ?>
-
-                            <?php
-                            
-                            foreach ($result as $row) {
-                                ?>
-                                <div class="post-item">
-
-                                    <div class="image-holder">
-                                        <img class="img-responsive" src="assets/uploads/<?php echo $row['photo']; ?>" alt="<?php echo $row['post_title']; ?>">
-                                    </div>
-                                    <div class="text">
-                                        <div class="inner">
-                                            <h3><a href="blog-single.php?slug=<?php echo $row['post_slug']; ?>"><?php echo $row['post_title']; ?></a></h3>
-                                            <ul class="status">
-                                                <li><i class="fa fa-tag"></i><a href="category.php?slug=<?php echo $row['category_slug']; ?>"><?php echo $row['category_name']; ?></a></li>
-                                                <li><i class="fa fa-calendar"></i><?php echo $row['post_date']; ?></li>
-                                            </ul>
-                                            <p>
-                                                <?php echo substr($row['post_content'],0,200).' ...'; ?> 
-                                            </p>
-                                            <p class="button">
-                                                <a href="blog-single.php?slug=<?php echo $row['post_slug']; ?>">Read More</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php
-                            }
-                            ?>
-
-                            <div class="pagination">
-                            <?php 
-                                echo $pagination; 
-                            ?>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>                
-            </div>
-            <div class="col-md-3">
-                
-                <?php require_once('sidebar.php'); ?>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
-<?php require_once('footer.php'); ?>

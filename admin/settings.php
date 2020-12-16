@@ -13,7 +13,7 @@ if(isset($_POST['form1'])) {
     } else {
         $ext = pathinfo( $path, PATHINFO_EXTENSION );
         $file_name = basename( $path, '.' . $ext );
-        if( $ext!='jpg' && $ext!='png' && $ext!='jpeg' && $ext!='gif' ) {
+        if( $ext!='jpg' && $ext!='JPG' && $ext!='png' && $ext!='PNG' && $ext!='jpeg' && $ext!='JPEG' && $ext!='gif' && $ext!='GIF' ) {
             $valid = 0;
             $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
         }
@@ -54,7 +54,7 @@ if(isset($_POST['form2'])) {
     } else {
         $ext = pathinfo( $path, PATHINFO_EXTENSION );
         $file_name = basename( $path, '.' . $ext );
-        if( $ext!='jpg' && $ext!='png' && $ext!='jpeg' && $ext!='gif' ) {
+        if( $ext!='jpg' && $ext!='JPG' && $ext!='png' && $ext!='PNG' && $ext!='jpeg' && $ext!='JPEG' && $ext!='gif' && $ext!='GIF' ) {
             $valid = 0;
             $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
         }
@@ -289,7 +289,7 @@ if(isset($_POST['form6_1'])) {
     if($path != '') {
         $ext = pathinfo( $path, PATHINFO_EXTENSION );
         $file_name = basename( $path, '.' . $ext );
-        if( $ext!='jpg' && $ext!='png' && $ext!='jpeg' && $ext!='gif' ) {
+        if( $ext!='jpg' && $ext!='JPG' && $ext!='png' && $ext!='PNG' && $ext!='jpeg' && $ext!='JPEG' && $ext!='gif' && $ext!='GIF'  ) {
             $valid = 0;
             $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
         }
@@ -374,7 +374,7 @@ if(isset($_POST['form7_1'])) {
     } else {
         $ext = pathinfo( $path, PATHINFO_EXTENSION );
         $file_name = basename( $path, '.' . $ext );
-        if( $ext!='jpg' && $ext!='png' && $ext!='jpeg' && $ext!='gif' ) {
+        if( $ext!='jpg' && $ext!='JPG' && $ext!='png' && $ext!='PNG' && $ext!='jpeg' && $ext!='JPEG' && $ext!='gif' && $ext!='GIF' ) {
             $valid = 0;
             $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
         }
@@ -415,7 +415,7 @@ if(isset($_POST['form7_2'])) {
     } else {
         $ext = pathinfo( $path, PATHINFO_EXTENSION );
         $file_name = basename( $path, '.' . $ext );
-        if( $ext!='jpg' && $ext!='png' && $ext!='jpeg' && $ext!='gif' ) {
+        if( $ext!='jpg' && $ext!='JPG' && $ext!='png' && $ext!='PNG' && $ext!='jpeg' && $ext!='JPEG' && $ext!='gif' && $ext!='GIF' ) {
             $valid = 0;
             $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
         }
@@ -456,7 +456,7 @@ if(isset($_POST['form7_3'])) {
     } else {
         $ext = pathinfo( $path, PATHINFO_EXTENSION );
         $file_name = basename( $path, '.' . $ext );
-        if( $ext!='jpg' && $ext!='png' && $ext!='jpeg' && $ext!='gif' ) {
+        if( $ext!='jpg' && $ext!='JPG' && $ext!='png' && $ext!='PNG' && $ext!='jpeg' && $ext!='JPEG' && $ext!='gif' && $ext!='GIF' ) {
             $valid = 0;
             $error_message .= 'You must have to upload jpg, jpeg, gif or png file<br>';
         }

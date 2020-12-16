@@ -5,11 +5,11 @@ $statement = $pdo->prepare("SELECT * FROM tbl_page WHERE id=1");
 $statement->execute();
 $result = $statement->fetchAll(PDO::FETCH_ASSOC);                            
 foreach ($result as $row) {
-    $blog_banner = $row['blog_banner'];
+    $romrel_page_banner = $row['romrel_page_banner'];
 }
 ?>
 
-<div class="page-banner" style="background-image: url(assets/uploads/<?php echo $blog_banner; ?>);">
+<div class="page-banner" style="background-image: url(assets/uploads/<?php echo $romrel_page_banner; ?>);">
     <div class="inner">
         <h1>Romance & Relationship</h1>
     </div>
